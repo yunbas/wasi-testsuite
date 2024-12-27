@@ -3,6 +3,7 @@ set -ueo pipefail
 
 REPOS=(
     "wasi-threads"
+    "wasi-nn"
 )
 
 WASI_VERSION=22
@@ -26,6 +27,11 @@ function install_wasi_sdk()
 function build_wasi-threads()
 {
     CC="$WASI_SDK_DIR/bin/clang -pthread -Wl,--import-memory -Wl,--export-memory --target=wasm32-wasi-threads" ./build.sh
+}
+
+function build_wasi-nn()
+{
+    ./build.sh
 }
 
 function update_repo()
